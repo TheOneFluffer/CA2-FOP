@@ -41,28 +41,30 @@ while(Selection != 6)
 
     switch(Selection)
     {
+        //Show all member's information
         case 1:
             for (var i = 0; i < 5; i++)
             {
                 console.log("Name: " + memberList[i][0] + "\n" + "Membership Type: " + memberList[i][1] + "\n" + "Date Joined: " + memberList[i][2] + "\n" + "Date of Birth: " + memberList[i][3] + "\n" + "Points Earned: " + memberList[i][4] + "\n\n");
             }
             break;
-        
+        //Show only selected member's information
         case 2:
             console.log("Sorry, work in progress!");
             break;
-
+        //Adding new user
         case 3:
             console.log("Sorry, work in progress!");
             break;
-
+        //Updating points earned:
         case 4:
             console.log("Sorry, work in progress!");
             break;
-
+        //Statistics
         case 5:
             console.log("Sorry, work in progress!");
             break;
+        //Break code
         case 6:
             console.log("Thank you & goodbye!");
             break;
