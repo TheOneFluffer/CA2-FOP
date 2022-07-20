@@ -5,12 +5,51 @@
 var input = require('readline-sync');
 var Selection = 0;
 
-//First 5 arrays to store the user information
-var Leonardo = ["Leonardo", "Gold", "1 Dec 2019", "1 Jan 1980", 1400];
-var Catherine = ["Catherine", "Ruby", "14 Jan 2020", "28 Oct 1985", 250];
-var Luther = ["Luther", "Gold", "29 Apr 2020", "16 Mar 1992", 3350];
-var Bruce = ["Bruce", "Diamond", "3 Jun 2020", "18 Mar 1994", 40200];
-var Amy = ["Amy", "Ruby", "5 Jun 2020", "31 May 2000", 500];
+class Member
+{
+    constructor(name, rank, Date_Joined, DOB, points)
+    {
+        this.name = name;
+        this.rank = rank;
+        this.Date_Joined = Date_Joined;
+        this.DOB = DOB;
+        this.points = points;
+        
+        //Returning elements
+        getMembers()
+        {
+            return this.name + ", " + this.rank + ", " + this.Date_Joined + ", " + this.DOB + ", " + this.points;
+        }
+    }
+}
+var user1 = ("Jenny", "Gold", "20 July 2020", "" )
+console.log("")
+class MemberGroup
+{
+    constructor(Leonardo, Catherine, Luther, Bruce, Amy)
+    {
+        //First 5 arrays to store the user information
+        this.Leonardo = ["Leonardo", "Gold", "1 Dec 2019", "1 Jan 1980", 1400];
+        this.Catherine = ["Catherine", "Ruby", "14 Jan 2020", "28 Oct 1985", 250];
+        this.Luther = ["Luther", "Gold", "29 Apr 2020", "16 Mar 1992", 3350];
+        this.Bruce = ["Bruce", "Diamond", "3 Jun 2020", "18 Mar 1994", 40200];
+        this.Amy = ["Amy", "Ruby", "5 Jun 2020", "31 May 2000", 500];
+    }
+    appendMemberGroup()
+    {
+
+    }
+}
+var Leonardo = 
+{
+    name: "Leonardo",
+    rank: "Gold",
+    Date_Joined: "1 Dec 2019",
+    DOB: "1 Jan 1980",
+    points: 1400,
+}
+
+var Catherine = 
 
 //Array to store all user information into an 2D array
 var memberList = [Leonardo, Catherine, Luther, Bruce, Amy];
@@ -54,7 +93,7 @@ while(Selection != 6)
             break;
         //Adding new user
         case 3:
-            console.log("Sorry, work in progress!");
+            console.log("UwU");
             break;
         //Updating points earned:
         case 4:
