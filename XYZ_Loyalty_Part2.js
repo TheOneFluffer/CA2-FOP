@@ -68,10 +68,9 @@ class MemberGroup {
     AddNewUser() //For option 3 
     {
         const date = new Date();
-        let day = date.getDate();
-        let month = date.getMonth() + 1;
-        let year = date.getFullYear();
-        let currentDate = day + " " + month + " " + year;
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
         var newName = input.question("Please enter member's name: ");
         var newDOB = input.question("Please enter member's date of birth: ");
         
@@ -114,7 +113,7 @@ class MemberGroup {
                 month = "Dec";
                 break;
         }
-        this.MemberArray.push(new Member(newName, "Ruby", currentDate, newDOB, 0));
+        this.MemberArray.push(new Member(newName, "Ruby", day + " " + month + " " + year, newDOB, 0));
         Names.push(Names);
     }
 
