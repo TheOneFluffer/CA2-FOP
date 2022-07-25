@@ -115,12 +115,28 @@ class MemberGroup {
         return this.MemberArray.push(new Member(newName, "Ruby", day + " " + month + " " + year, newDOB, 0));
     }
 
-    UpdatePoints()
+    UpdatePoints() //For option 4
     {
+        for (var i = 0; i < this.MemberArray.length; i++)
+        {
+            if (Areyouthere.toUpperCase() == this.MemberArray[i].name.toUpperCase())
+            {
+                YesNo = true;
+                membernameint = i;
+            }
+        }
 
+        if(YesNo == true)
+        {
+            
+        }
+        else
+        {
+            console.log("Member does not exist.\n");
+        }
     }
 
-    getNumberofMembers()
+    getNumberofMembers()// For sub menu 6
     {
         return this.MemberArray.length();
     }
@@ -262,10 +278,7 @@ while (Selection != 6) {
                         break;
 
                     case 6: //Display the total amount of users.
-                        function TotalUsers()
-                        {
-
-                        }
+                        
                         break;
 
                     case 7:
