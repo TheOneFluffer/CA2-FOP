@@ -7,10 +7,10 @@ var Selection = 0;
 
 var Names = ["Leonardo", "Catherine", "Luther", "Bruce", "Amy"];
 var Upper = [];
-Names.forEach(Element =>
+/*Names.forEach(Element =>
     {
         Upper.push(Element.toUpperCase());
-    });
+    });*/
 
 class Member {
     constructor(name, rank, Date_Joined, DOB, points) 
@@ -29,6 +29,12 @@ class MemberGroup {
         //First 5 Objects to store user's info
         this.MemberArray = [];  //class property
         this.Ranks = ["Ruby", "Gold", "Platinum", "Diamond"]
+        this.Names = ["Leonardo", "Catherine", "Luther", "Bruce", "Amy"];
+        var Upper = [];
+        Names.forEach(Element =>
+        {
+            Upper.push(Element.toUpperCase());
+        });
         this.MemberArray.push(new Member("Leonardo", "Gold", "1 Dec 2019", "1 Jan 1980", 1400));
         this.MemberArray.push(new Member("Catherine", "Ruby", "14 Jan 2020", "28 Oct 1985", 250));
         this.MemberArray.push(new Member("Luther", "Gold", "29 Apr 2020", "16 Mar 1992", 3350));
@@ -47,22 +53,7 @@ class MemberGroup {
     
     SpecificMemberOnly()
     {
-        var LookingForMe = input.question("Please enter member's name: ");
-        for (var i = 0; i < this.MemberArray.length; i++)
-        {
-            if (this.MemberArray.name != LookingForMe.toLowerCase())
-            {
-                return "Member does not exist.";
-            }
-            else
-            {
-                for (var i = 0; i < this.MemberArray.length; i++)
-                {
-                    var Info = console.log("\nName: " + this.MemberArray[i].name + "\nRank: " + this.MemberArray[i].rank + "\nDate Joined: " + this.MemberArray[i].Date_Joined + "\nDate of Birth: " + this.MemberArray[i].DOB + "\nPoints: " + this.MemberArray[i].points);
-                }
-                return Info;
-            }
-        }
+        
     }
 
     AddNewUser() //For option 3 
@@ -114,7 +105,7 @@ class MemberGroup {
                 break;
         }
         this.MemberArray.push(new Member(newName, "Ruby", day + " " + month + " " + year, newDOB, 0));
-        Names.push(Names);
+        return Names.push(Names);
     }
 
     getNumberofMembers()
