@@ -5,13 +5,6 @@
 var input = require('readline-sync');
 var Selection = 0;
 
-var Names = ["Leonardo", "Catherine", "Luther", "Bruce", "Amy"];
-var Upper = [];
-/*Names.forEach(Element =>
-    {
-        Upper.push(Element.toUpperCase());
-    });*/
-
 class Member {
     constructor(name, rank, Date_Joined, DOB, points) 
     {
@@ -30,11 +23,6 @@ class MemberGroup {
         this.MemberArray = [];  //class property
         this.Ranks = ["Ruby", "Gold", "Platinum", "Diamond"]
         this.Names = ["Leonardo", "Catherine", "Luther", "Bruce", "Amy"];
-        var Upper = [];
-        Names.forEach(Element =>
-        {
-            Upper.push(Element.toUpperCase());
-        });
         this.MemberArray.push(new Member("Leonardo", "Gold", "1 Dec 2019", "1 Jan 1980", 1400));
         this.MemberArray.push(new Member("Catherine", "Ruby", "14 Jan 2020", "28 Oct 1985", 250));
         this.MemberArray.push(new Member("Luther", "Gold", "29 Apr 2020", "16 Mar 1992", 3350));
@@ -42,18 +30,38 @@ class MemberGroup {
         this.MemberArray.push(new Member("Amy", "Ruby", "5 Jun 2020", "31 May 2000", 500));
     }
 
-    DisplayMembersArray()
+    DisplayMembersArray() //For option 1
     {
         for (var i = 0; i < this.MemberArray.length; i++)
         {
-            var Display = console.log("\nName: " + this.MemberArray[i].name + "\nRank: " + this.MemberArray[i].rank + "\nDate Joined: " + this.MemberArray[i].Date_Joined + "\nDate of Birth: " + this.MemberArray[i].DOB + "\nPoints: " + this.MemberArray[i].points);
+            var Display = console.log("Name: " + this.MemberArray[i].name + "\nRank: " + this.MemberArray[i].rank + "\nDate Joined: " + this.MemberArray[i].Date_Joined + "\nDate of Birth: " + this.MemberArray[i].DOB + "\nPoints: " + this.MemberArray[i].points + "\n");
         }
         return Display;
     }
     
-    SpecificMemberOnly()
+    SpecificMemberOnly() //For option 2
     {
-        
+        let YesNo = false;
+        let membernameint = -1;
+        var Areyouthere = input.question("Please enter member's name: ");
+
+        for (var i = 0; i < this.MemberArray.length; i++)
+        {
+            if (Areyouthere.toUpperCase() == this.MemberArray[i].name.toUpperCase())
+            {
+                YesNo = true;
+                membernameint = i;
+            }
+        }
+
+        if(YesNo == true)
+        {
+            console.log("\nName: " + this.MemberArray[membernameint].name + "\nRank: " + this.MemberArray[membernameint].rank + "\nDate Joined: " + this.MemberArray[membernameint].Date_Joined + "\nDate of Birth: " + this.MemberArray[membernameint].DOB + "\nPoints: " + this.MemberArray[membernameint].points + "\n");
+        }
+        else
+        {
+            console.log("Member does not exist.\n");
+        }
     }
 
     AddNewUser() //For option 3 
@@ -104,8 +112,12 @@ class MemberGroup {
                 month = "Dec";
                 break;
         }
-        this.MemberArray.push(new Member(newName, "Ruby", day + " " + month + " " + year, newDOB, 0));
-        return Names.push(Names);
+        return this.MemberArray.push(new Member(newName, "Ruby", day + " " + month + " " + year, newDOB, 0));
+    }
+
+    UpdatePoints()
+    {
+
     }
 
     getNumberofMembers()
