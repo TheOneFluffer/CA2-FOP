@@ -5,6 +5,13 @@
 var input = require('readline-sync');
 var Selection = 0;
 
+var Names = ["Leonardo", "Catherine", "Luther", "Bruce", "Amy"];
+var Upper = [];
+Names.forEach(Element =>
+    {
+        Upper.push(Element.toUpperCase());
+    });
+
 class Member {
     constructor(name, rank, Date_Joined, DOB, points) 
     {
@@ -58,18 +65,57 @@ class MemberGroup {
         }
     }
 
-    AddNewUser()
+    AddNewUser() //For option 3 
     {
         const date = new Date();
         let day = date.getDate();
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
-
-// This arrangement can be altered based on how we want the date's format to appear.
         let currentDate = day + " " + month + " " + year;
         var newName = input.question("Please enter member's name: ");
         var newDOB = input.question("Please enter member's date of birth: ");
+        
+        switch(month)
+        {
+            case 0:
+                month = "Jan";
+                break;
+            case 1:
+                month = "Feb";
+                break;
+            case 2:
+                month = "Mar";
+                break;
+            case 3:
+                month = "Apr";
+                break;
+            case 4:
+                month = "May";
+                break;
+            case 5:
+                month = "Jun";
+                break;
+            case 6:
+                month = "Jul";
+                break;
+            case 7:
+                month = "Aug";
+                break;
+            case 8:
+                month = "Sep";
+                break;
+            case 9:
+                month = "Oct";
+                break;
+            case 10:
+                month = "Nov";
+                break;
+            case 11:
+                month = "Dec";
+                break;
+        }
         this.MemberArray.push(new Member(newName, "Ruby", currentDate, newDOB, 0));
+        Names.push(Names);
     }
 
     getNumberofMembers()
@@ -78,6 +124,7 @@ class MemberGroup {
     }
 }
 
+//Main program
 console.log("Welcome to XYZ Membership Loyalty Programme!");
 
 var memberlist = new MemberGroup;
