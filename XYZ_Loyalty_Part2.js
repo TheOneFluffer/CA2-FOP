@@ -21,8 +21,8 @@ class MemberGroup {
     {
         //First 5 Objects to store user's info
         this.MemberArray = [];  //class property
-        this.Ranks = ["Ruby", "Gold", "Platinum", "Diamond"]
-        this.Names = ["Leonardo", "Catherine", "Luther", "Bruce", "Amy"];
+        /*this.Ranks = ["Ruby", "Gold", "Platinum", "Diamond"]
+        this.Names = ["Leonardo", "Catherine", "Luther", "Bruce", "Amy"];*/
         this.MemberArray.push(new Member("Leonardo", "Gold", "1 Dec 2019", "1 Jan 1980", 1400));
         this.MemberArray.push(new Member("Catherine", "Ruby", "14 Jan 2020", "28 Oct 1985", 250));
         this.MemberArray.push(new Member("Luther", "Gold", "29 Apr 2020", "16 Mar 1992", 3350));
@@ -67,11 +67,11 @@ class MemberGroup {
     AddNewUser() //For option 3 
     {
         const date = new Date();
+        var YesNo = false;
         var day = date.getDate();
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
         var newName = input.question("Please enter member's name: ");
-        var newDOB = input.question("Please enter member's date of birth: ");
         
         switch(month)
         {
@@ -112,18 +112,58 @@ class MemberGroup {
                 month = "Dec";
                 break;
         }
-        return this.MemberArray.push(new Member(newName, "Ruby", day + " " + month + " " + year, newDOB, 0));
+        var combinedDate = day + " " + month + " " + year;
+
+        for (var i = 0; i < this.MemberArray.length; i++)
+        {
+            if (newName.toUpperCase() == this.MemberArray[i].name.toUpperCase())
+            {
+                YesNo = true;
+            }
+        }
+
+        if (YesNo == true)
+        {
+            return console.log("Member's name exists in database. Please enter a new name. \n");
+        }
+        while(YesNo == false)
+        {
+            var newDOB = input.question("Please enter member's date of birth: ");
+            return this.MemberArray.push(new Member(newName, "Ruby", combinedDate, newDOB, 0));
+        }
     }
 
     UpdatePoints() //For option 4
     {
+        function RankUp(points)
+        {
+            if (points = 0)
+            {
+                return this.MemberArray[membernameint].rank = "Ruby"; //Default
+            }
+
+            else if (points = 500)
+            {
+                return this.MemberArray[membernameint].rank = "Gold";
+            }
+
+            else if (points = 5000)
+            {
+                return this.MemberArray[membernameint].rank = "Platinum";
+            }
+
+            else if (points = 20000)
+            {
+                return this.MemberArray[membernameint].rank = "Diamond";
+            }
+        }
         var Areyouthere = input.question("Please enter member's name: ");
         for (var i = 0; i < this.MemberArray.length; i++)
         {
             if (Areyouthere.toUpperCase() == this.MemberArray[i].name.toUpperCase())
             {
-                YesNo = true;
-                membernameint = i;
+                var YesNo = true;
+                var membernameint = i;
             }
         }
 
@@ -133,45 +173,71 @@ class MemberGroup {
             var totalPoints = 0;
             if (newPoints <= 50)
             {
-                totalPoints = this.MemberArray[i].points + 10;
+                totalPoints = this.MemberArray[membernameint].points + 10;
+                RankUp(totalPoints);
             }
             else if (50.01 < newPoints < 100)
             {
-                totalPoints = this.MemberArray[i].points + 50;
+                totalPoints = this.MemberArray[membernameint].points + 50;
+                RankUp(totalPoints);
             }
             else if (100.01 < newPoints < 200)
             {
-                totalPoints = this.MemberArray[i].points + 100;
+                totalPoints = this.MemberArray[membernameint].points + 100;
+                RankUp(totalPoints);
             }
             else if (200.01 < newPoints < 500)
             {
-                totalPoints = this.MemberArray[i].points + 200;
+                totalPoints = this.MemberArray[membernameint].points + 200;
+                RankUp(totalPoints);
             }
             else if (500.01 < newPoints < 1000)
             {
-                totalPoints = this.MemberArray[i].points + 500;
+                totalPoints = this.MemberArray[membernameint].points + 500;
+                RankUp(totalPoints);
             }
             else if (1000.01 < newPoints < 2500)
             {
-                totalPoints = this.MemberArray[i].points + 1000;
+                totalPoints = this.MemberArray[membernameint].points + 1000;
+                RankUp(totalPoints);
             }
             else if (2500.01 < newPoints)
             {
                 totalPoints = this.MemberArray[i].points + 2000;
+                RankUp(totalPoints);
             }
         }
         else
         {
             console.log("Member does not exist.\n");
         }
-
-        if (totalPoints < 0)
-        {
-            
-        }
     }
 
-    getNumberofMembers()// For sub menu 6
+    MembershipType() // For sub menu 1
+    {
+
+    }
+
+    NewToOld() // For sub menu 2
+    {
+
+    }
+    
+    HighToLow() // For sub menu 3
+    {
+        
+    }
+
+    NumberofMembers() // For sub menu 4
+    {
+        
+    }
+    TotalPoints() // For sub menu 5
+    {
+        
+    }
+
+    getNumberofMembers() // For sub menu 6
     {
         return this.MemberArray.length();
     }
@@ -193,7 +259,8 @@ do {
     }
 } while (regex.test(Name) == false);
 
-while (Selection != 6) {
+while (Selection != 6) 
+{
     console.log("Hi " + Name + ", please select your choice:");
     console.log("\t 1. Display all member's information");
     console.log("\t 2. Display member information");
@@ -278,42 +345,27 @@ while (Selection != 6) {
                         break;
 
                     case 1: //Display names of a certain type of members only.
-                        function MembershipType()
-                        {
-
-                        }
+                        memberlist.MembershipType();
                         break;
 
                     case 2: //Display the name of the youngest and oldest member in the system.
-                        function NewToOld()
-                        {
-
-                        }
+                        memberlist.NewToOld();
                         break;
 
                     case 3: //Display the name of members with the highest and lowest points earned.
-                        function HighToLow()
-                        {
-
-                        }
+                        memberlist.HighToLow();
                         break;
 
                     case 4: //Display total number of members in each membership type.
-                        function NumberofMembers()
-                        {
-
-                        }
+                        memberlist.NumberofMembers();
                         break;
 
                     case 5: //Display the total points in each membership type.
-                        function TotalPoints()
-                        {
-                            console.log("Ruby: " + "\nGold: " + "\nPlatinum: " + "\nDiamond");
-                        }
+                        memberlist.TotalPoints();
                         break;
 
                     case 6: //Display the total amount of users.
-                        
+                        memberlist.getNumberofMembers();
                         break;
 
                     case 7:
