@@ -117,6 +117,7 @@ class MemberGroup {
 
     UpdatePoints() //For option 4
     {
+        var Areyouthere = input.question("Please enter member's name: ");
         for (var i = 0; i < this.MemberArray.length; i++)
         {
             if (Areyouthere.toUpperCase() == this.MemberArray[i].name.toUpperCase())
@@ -128,11 +129,45 @@ class MemberGroup {
 
         if(YesNo == true)
         {
-            
+            var newPoints = input.questionFloat("Please enter the amount spent: $");
+            var totalPoints = 0;
+            if (newPoints <= 50)
+            {
+                totalPoints = this.MemberArray[i].points + 10;
+            }
+            else if (50.01 < newPoints < 100)
+            {
+                totalPoints = this.MemberArray[i].points + 50;
+            }
+            else if (100.01 < newPoints < 200)
+            {
+                totalPoints = this.MemberArray[i].points + 100;
+            }
+            else if (200.01 < newPoints < 500)
+            {
+                totalPoints = this.MemberArray[i].points + 200;
+            }
+            else if (500.01 < newPoints < 1000)
+            {
+                totalPoints = this.MemberArray[i].points + 500;
+            }
+            else if (1000.01 < newPoints < 2500)
+            {
+                totalPoints = this.MemberArray[i].points + 1000;
+            }
+            else if (2500.01 < newPoints)
+            {
+                totalPoints = this.MemberArray[i].points + 2000;
+            }
         }
         else
         {
             console.log("Member does not exist.\n");
+        }
+
+        if (totalPoints < 0)
+        {
+            
         }
     }
 
