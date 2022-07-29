@@ -77,13 +77,7 @@ class MemberGroup {
             }
         }
 
-        while (memberFound == true)
-            {
-                var addMember = input.question("Member's name exists in database. Please enter a new name.\nPlease enter member's name: ");
-                memberFound = false;
-            }
-
-            if (memberFound == false)
+        if (memberFound == false)
             {
                 const date = new Date();
                 var day = date.getDate();
@@ -133,7 +127,13 @@ class MemberGroup {
                 var combinedDate = day + " " + month + " " + year;
                 var newDOB = input.question("Please enter member's date of birth: ");
                 return this.MemberArray.push(new Member(addMember, "Ruby", combinedDate, newDOB, 0));
-            }
+        }
+
+        else
+        {
+            var addMember = input.question("Member's name exists in database. Please enter a new name.\nPlease enter member's name: ");
+            memberFound = false;
+        }
     }
 
     UpdatePoints() //For option 4 (Works)
@@ -220,7 +220,7 @@ class MemberGroup {
     {
         var rankFound = false;
         var checkRank = input.question("Enter Membership Type: ");
-        var String ="Member(s) of membership type " + checkRank.toLowerCase() + ": "
+        var String ="Member(s) of membership type " + checkRank + ": "
 
         for (var i = 0; i < this.MemberArray.length; i++)
         {
