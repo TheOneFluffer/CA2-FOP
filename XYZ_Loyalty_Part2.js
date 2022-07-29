@@ -39,23 +39,20 @@ class MemberGroup {
     
     SpecificMemberOnly() //For option 2 (Works)
     {
-        membernameint = -1;
-        memberFound = true;
+        var membernameint = -1;
+        var memberFound = false;
         
-        var Areyouthere = input.question("Please enter member's name: ");
+        var memberName = input.question("Please enter member's name: ");
 
         for (var i = 0; i < this.MemberArray.length; i++)
         {
-            if (Areyouthere.toUpperCase() == this.MemberArray[i].name.toUpperCase())
+            if (memberName.toUpperCase() == this.MemberArray[i].name.toUpperCase())
             {
                 memberFound = true;
                 membernameint = i;
             }
         }
-    }
 
-    PrintFoundMember(memberFound, membernameint)
-    {
         if(memberFound == true)
         {
             console.log("\nName: " + this.MemberArray[membernameint].name + "\nRank: " + this.MemberArray[membernameint].rank + "\nDate Joined: " + this.MemberArray[membernameint].Date_Joined + "\nDate of Birth: " + this.MemberArray[membernameint].DOB + "\nPoints: " + this.MemberArray[membernameint].points + "\n");
@@ -68,54 +65,77 @@ class MemberGroup {
 
     AddNewUser() //For option 3 (Works)
     {
-        const date = new Date();
-        var YesNo = false;
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear();
+        var membernameint = -1;
+        var memberFound = false;
         
-        switch(month)
+        var addMember = input.question("Please enter member's name: ");
+
+        for (var i = 0; i < this.MemberArray.length; i++)
         {
-            case 0:
-                month = "Jan";
-                break;
-            case 1:
-                month = "Feb";
-                break;
-            case 2:
-                month = "Mar";
-                break;
-            case 3:
-                month = "Apr";
-                break;
-            case 4:
-                month = "May";
-                break;
-            case 5:
-                month = "Jun";
-                break;
-            case 6:
-                month = "Jul";
-                break;
-            case 7:
-                month = "Aug";
-                break;
-            case 8:
-                month = "Sep";
-                break;
-            case 9:
-                month = "Oct";
-                break;
-            case 10:
-                month = "Nov";
-                break;
-            case 11:
-                month = "Dec";
-                break;
+            if (addMember.toUpperCase() == this.MemberArray[i].name.toUpperCase())
+            {
+                memberFound = true;
+                //membernameint = i;
+            }
         }
-        var combinedDate = day + " " + month + " " + year;
-        var newDOB = input.question("Please enter member's date of birth: ");
-        return this.MemberArray.push(new Member(newName, "Ruby", combinedDate, newDOB, 0));
+
+        while (memberFound == true)
+            {
+                var addMember = input.question("Member's name exists in database. Please enter a new name.\nPlease enter member's name: ");
+                memberFound = false;
+            }
+
+            if (memberFound == false)
+            {
+                const date = new Date();
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                        
+                switch(month)
+                {
+                    case 0:
+                        month = "Jan";
+                        break;
+                    case 1:
+                        month = "Feb";
+                        break;
+                    case 2:
+                        month = "Mar";
+                        break;
+                    case 3:
+                        month = "Apr";
+                        break;
+                    case 4:
+                        month = "May";
+                        break;
+                    case 5:
+                        month = "Jun";
+                        break;
+                    case 6:
+                        month = "Jul";
+                        break;
+                    case 7:
+                        month = "Aug";
+                        break;
+                    case 8:
+                        month = "Sep";
+                        break;
+                    case 9:
+                        month = "Oct";
+                        break;
+                    case 10:
+                        month = "Nov";
+                        break;
+                    case 11:
+                        month = "Dec";
+                        break;
+                }
+
+                var combinedDate = day + " " + month + " " + year;
+                var newDOB = input.question("Please enter member's date of birth: ");
+                return this.MemberArray.push(new Member(addMember, "Ruby", combinedDate, newDOB, 0));
+            }
     }
 
     UpdatePoints(amountSpent) //For option 4 (Need fixing)
@@ -232,8 +252,8 @@ class MemberGroup {
 console.log("Welcome to XYZ Membership Loyalty Programme!");
 
 var memberlist = new MemberGroup;
-var memberFound = false;
-var membernameint = -1;
+//var memberFound = false;
+//var membernameint = -1;
 
 //Prompt user for name until they key in their name
 do {
@@ -263,33 +283,18 @@ while (Selection != 6)
             break;
 
         case 2://Show only selected member's information
-            memberlist.SpecificMemberOnly();                            //search for member
-            memberlist.PrintFoundMember(memberFound, membernameint);    //if member exist, print
+            memberlist.SpecificMemberOnly();                            //search for member if member exist, print
             break;
 
         case 3://Adding new user
-
-            while(memberFound != true)
-            {
-                memberlist.SpecificMemberOnly();
-            }
-
-            if(memberFound == true)
-            {
-                console.log("Member's name exist in database. Please enter a new name.");
-                memberFound = false;
-            }
-            else
-            {
-                memberlist.AddNewUser();
-            }
-
+            memberlist.AddNewUser();
             break;
 
         case 4://Updating points earned:
             var memberName = input.question("Please enter member's name: ");
             //var amountSpent = input.questionFloat("Please enter the amount spent: $");
             memberlist.UpdatePoints(memberName);
+            break;
 
         case 5://Statistics
             while (Selection != 7) {
