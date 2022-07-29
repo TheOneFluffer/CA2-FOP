@@ -1,4 +1,4 @@
-// Name: lau Hong Wei
+// Name: Lau Hong Wei
 // Class: DCITP/1A/05
 // Adm: 2241319
 
