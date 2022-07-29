@@ -30,7 +30,7 @@ class MemberGroup {
 
     DisplayMembersArray() //For option 1 (Works)
     {
-        for (var i = 0; i < this.MemberArray.length; i++)
+        for(var i = 0; i < this.MemberArray.length; i++)
         {
             var Display = console.log("Name: " + this.MemberArray[i].name + "\nRank: " + this.MemberArray[i].rank + "\nDate Joined: " + this.MemberArray[i].Date_Joined + "\nDate of Birth: " + this.MemberArray[i].DOB + "\nPoints: " + this.MemberArray[i].points + "\n");
         }
@@ -44,9 +44,9 @@ class MemberGroup {
         
         var memberName = input.question("Please enter member's name: ");
 
-        for (var i = 0; i < this.MemberArray.length; i++)
+        for(var i = 0; i < this.MemberArray.length; i++)
         {
-            if (memberName.toUpperCase() == this.MemberArray[i].name.toUpperCase())
+            if(memberName.toUpperCase() == this.MemberArray[i].name.toUpperCase())
             {
                 memberFound = true;
                 membernameint = i;
@@ -66,18 +66,24 @@ class MemberGroup {
     AddNewUser() //For option 3 (Works)
     {
         var memberFound = false;
-        
+        //var membernameint = -1;
         var addMember = input.question("Please enter member's name: ");
 
-        for (var i = 0; i < this.MemberArray.length; i++)
+        for(var i = 0; i < this.MemberArray.length; i++)
         {
-            if (addMember.toUpperCase() == this.MemberArray[i].name.toUpperCase())
+            if(addMember.toUpperCase() == this.MemberArray[i].name.toUpperCase())
             {
                 memberFound = true;
             }
         }
 
-        if (memberFound == false)
+        while(memberFound == true)
+            {
+                var addMember = input.question("Member's name exists in database. Please enter a new name.\nPlease enter member's name: ");
+                memberFound = false;
+            }
+
+            if(memberFound == false)
             {
                 const date = new Date();
                 var day = date.getDate();
@@ -127,13 +133,7 @@ class MemberGroup {
                 var combinedDate = day + " " + month + " " + year;
                 var newDOB = input.question("Please enter member's date of birth: ");
                 return this.MemberArray.push(new Member(addMember, "Ruby", combinedDate, newDOB, 0));
-        }
-
-        else
-        {
-            var addMember = input.question("Member's name exists in database. Please enter a new name.\nPlease enter member's name: ");
-            memberFound = false;
-        }
+            }
     }
 
     UpdatePoints() //For option 4 (Works)
@@ -142,16 +142,16 @@ class MemberGroup {
         var memberFound = false;
         var addMember = input.question("Please enter member's name: ");
 
-        for (var i = 0; i < this.MemberArray.length; i++)
+        for(var i = 0; i < this.MemberArray.length; i++)
         {
-            if (addMember.toUpperCase() == this.MemberArray[i].name.toUpperCase())
+            if(addMember.toUpperCase() == this.MemberArray[i].name.toUpperCase())
             {
                 memberFound = true;
                 membernameint = i;
             }
         }
         
-        if (memberFound != true)
+        if(memberFound != true)
         {
             return console.log("Member does not exist.\n");
         }
@@ -160,53 +160,52 @@ class MemberGroup {
         {
             var totalPoints = 0;
             var amountSpent = input.questionFloat("Please enter the amount spent: $");
-            if (amountSpent <= 50)
+            if(amountSpent <= 50)
             {
                 this.MemberArray[membernameint].points += 10;
             }
-            else if (50.01 < amountSpent && amountSpent < 100)
+            else if(50.01 < amountSpent && amountSpent < 100)
             {
                 this.MemberArray[membernameint].points += 50;
             }
-            else if (100.01 < amountSpent && amountSpent < 200)
+            else if(100.01 < amountSpent && amountSpent < 200)
             {
                 this.MemberArray[membernameint].points += 100;
             }
-            else if (200.01 < amountSpent && amountSpent < 500)
+            else if(200.01 < amountSpent && amountSpent < 500)
             {
                 this.MemberArray[membernameint].points += 200;
             }
-            else if (500.01 < amountSpent && amountSpent < 1000)
+            else if(500.01 < amountSpent && amountSpent < 1000)
             {
                 this.MemberArray[membernameint].points += 500;
             }
-            else if (1000.01 < amountSpent && amountSpent < 2500)
+            else if(1000.01 < amountSpent && amountSpent < 2500)
             {
                 this.MemberArray[membernameint].points += 1000;
             }
-            else if (2500.01 < amountSpent)
+            else if(2500.01 < amountSpent)
             {
                 this.MemberArray[membernameint].points += 2000;
             }
 
 
         }
-
         this.UpdateRank(membernameint);
     }
 
     UpdateRank(index) // Continue from option 4 (Works)
     {
         var points2rank = this.MemberArray[index].points;
-        if (points2rank > 20000)
+        if(points2rank > 20000)
         {
             this.MemberArray[index].rank = "Diamond";
         }
-        else if (points2rank > 5000)
+        else if(points2rank > 5000)
         {
             this.MemberArray[index].rank = "Platinum";
         }
-        else if (points2rank > 500)
+        else if(points2rank > 500)
         {
             this.MemberArray[index].rank = "Gold";
         }
@@ -219,51 +218,50 @@ class MemberGroup {
     MembershipType() // For sub menu 1 (Works)
     {
         var rankFound = false;
+        var membernameint = -1;
         var checkRank = input.question("Enter Membership Type: ");
-        var String ="Member(s) of membership type " + checkRank + ": "
+        var String ="Member(s) of membership type " + checkRank.toLowerCase() + ": "
 
         for (var i = 0; i < this.MemberArray.length; i++)
         {
             if (checkRank.toUpperCase() == this.MemberArray[i].rank.toUpperCase())
             {
-                String += this.MemberArray[i].name + " ";
                 rankFound = true;
-            }
-            
-            else
-            {
-                rankFound = false;
+                membernameint = i;
+                String += this.MemberArray[membernameint].name + " ";
             }
         }
 
         if (rankFound == true)
         {
+            
             console.log(String);
         }
 
-        while (rankFound == false)
+        else
         {
             console.log("Please enter a valid membership type.");
+            rankFound = false;
         }
     }
 
     NewToOld() // For sub menu 2 (Works)
     {
         var Youngest = new Date(this.MemberArray[0].DOB);
-        var Oldest = new Date(this.MemberArray[0].DOB);
+        var Oldest = new Date(this.MemberArray[0].DOB);// First 2 variables hold oldest and youngest member date of birth
         var YoungestMember = this.MemberArray[0].name;
-        var OldestMember = this.MemberArray[0].name;
+        var OldestMember = this.MemberArray[0].name; //Last 2 variable hold oldest and youngest member names
 
-        for (var i = 0; i < this.MemberArray.length; i++)
+        for(var i = 0; i < this.MemberArray.length; i++)
         {
             var x = new Date(this.MemberArray[i].DOB);
             if (x > Youngest)
             {
                 Youngest = new Date(this.MemberArray[i].DOB);
-                YoungestMember = this.MemberArray[i].name;
+                YoungestMember = this.MemberArray[i].name; // Update youngest member
             }
         }
-        console.log("Youngest Member: " + YoungestMember);
+        console.log("Youngest Member: " + YoungestMember); //Display youngest member
 
         for (var o = 0; o < this.MemberArray.length; o++)
         {
@@ -271,18 +269,18 @@ class MemberGroup {
             if (x < Oldest)
             {
                 Oldest = new Date(this.MemberArray[o].DOB);
-                OldestMember = this.MemberArray[o].name;
+                OldestMember = this.MemberArray[o].name; // Update oldest member
             }
         }
-        console.log("Oldest Member: " + OldestMember);
+        console.log("Oldest Member: " + OldestMember + "\n"); //Display oldest member
     }
     
     HighToLow() // For sub menu 3 (Works)
     {
         var Highest = this.MemberArray[0].points;
-        var Lowest = this.MemberArray[0].points;
+        var Lowest = this.MemberArray[0].points; // First 2 variables hold highest and lowest member points
         var HighestMember = this.MemberArray[0].name;
-        var LowestMember = this.MemberArray[0].name;
+        var LowestMember = this.MemberArray[0].name; // First 2 variables hold highest and lowest member name
 
         for (var i = 0; i < this.MemberArray.length; i++)
         {
@@ -290,10 +288,10 @@ class MemberGroup {
             if (x > Highest)
             {
                 Highest = this.MemberArray[i].points;
-                HighestMember = this.MemberArray[i].name;
+                HighestMember = this.MemberArray[i].name; // Update highest member points
             }
         }
-        console.log("Highest Member: " + HighestMember);
+        console.log("Highest Member: " + HighestMember); //Display highest member points
 
         for (var o = 0; o < this.MemberArray.length; o++)
         {
@@ -301,10 +299,10 @@ class MemberGroup {
             if (x < Lowest)
             {
                 Lowest = this.MemberArray[o].points;
-                LowestMember = this.MemberArray[o].name;
+                LowestMember = this.MemberArray[o].name;// Update lowest member points
             }
         }
-        console.log("Lowest Member: " + LowestMember);
+        console.log("Lowest Member: " + LowestMember + "\n"); //Display lowest member points
     }
 
     SpecificNumberofMembers() // For sub menu 4 (Works)
@@ -347,8 +345,9 @@ class MemberGroup {
                 DiamondCount++;
             }
         }
-        console.log("diamond: " + DiamondCount);
+        console.log("diamond: " + DiamondCount + "\n");
     }
+
     TotalPoints() // For sub menu 5 (Works)
     {
         var RubyCount = 0; //Take all of ruby user's points and add them up together
@@ -389,48 +388,19 @@ class MemberGroup {
                 DiamondCount+= this.MemberArray[Diamond].points;;
             }
         }
-        console.log("diamond: " + DiamondCount);
+        console.log("diamond: " + DiamondCount + "\n");
     }
 
-    getNumberofMembers() // For sub menu 6
+    getNumberofMembers() // For sub menu 6 (Works)
     {
-        console.log(this.MemberArray.length);
+        console.log("There are " + this.MemberArray.length + " users");
     }
-
-    RemoveUsers()// Extra feature to remove user.
-    {
-        var membernameint = -1;
-        var memberFound = false;
-        
-        var removeMember = input.question("Please enter member's name you wish to remove: ");
-
-        for (var i = 0; i < this.MemberArray.length; i++)
-        {
-            if (removeMember.toUpperCase() == this.MemberArray[i].name.toUpperCase())
-            {
-                memberFound = true;
-                membernameint = i;
-            }
-        }
-
-        if(memberFound == true)
-        {
-            this.MemberArray.splice(membernameint, 1);
-            console.log("Removing User...");
-        }
-        else
-        {
-            console.log("Member does not exist.\n");
-        }
-    } 
 }
 
 //Main program
 console.log("Welcome to XYZ Membership Loyalty Programme!");
 
 var memberlist = new MemberGroup;
-//var memberFound = false;
-//var membernameint = -1;
 
 //Prompt user for name until they key in their name
 do {
@@ -443,7 +413,7 @@ do {
     }
 } while (regex.test(NamePrompt) == false);
 
-while (Selection != 7) 
+while (Selection != 6) 
 {
     console.log("Hi " + NamePrompt + ", please select your choice:");
     console.log("\t 1. Display all member's information");
@@ -451,8 +421,7 @@ while (Selection != 7)
     console.log("\t 3. Add new user");
     console.log("\t 4. Update points earned");
     console.log("\t 5. Statistics");
-    console.log("\t 6. Remove existing user")
-    console.log("\t 7. Exit");
+    console.log("\t 6. Exit");
     Selection = parseInt(input.question("\t >> "));
 
     switch (Selection) {
@@ -475,6 +444,7 @@ while (Selection != 7)
         case 5://Statistics
             while (Selection != 7) {
                 console.log("\t Please select an option from the sub-menu:");
+                console.log("\t 0. Not at all secret menu");
                 console.log("\t 1. Display names of (all) a certain type of members only.");
                 console.log("\t 2. Display the name of the youngest and oldest member in the system.");
                 console.log("\t 3. Display the name of members with the highest and lowest points earned.");
@@ -554,7 +524,7 @@ while (Selection != 7)
                         memberlist.getNumberofMembers();
                         break;
 
-                    case 7:
+                    case 7: //Break code
                         console.log("Returning back to menu....");
                         break;
 
@@ -565,11 +535,7 @@ while (Selection != 7)
             }
             break;
 
-        case 6:
-            memberlist.RemoveUsers();
-            break;
-
-        case 7://Break code
+        case 6://Break code
             console.log("Thank you & goodbye!");
             break;
 
